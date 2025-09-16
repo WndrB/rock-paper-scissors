@@ -15,9 +15,31 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-  choice = prompt('Write "rock," "paper," or "scissors."', "");
-  return choice;
+    choice = prompt('Write "rock," "paper," or "scissors."', "");
+    return choice.toLowerCase();
 }
 
-console.log(getComputerChoice());
-console.log(getHumanChoice());
+function playRound(computerChoice, humanChoice) {
+    choices = computerChoice + humanChoice;
+    let result;
+    if (choices === "rockscissors" || choices === "paperrock" || choices === "scissorspaper") {
+        result = `You lose! ${computerChoice} beats ${humanChoice}.`;
+        computerScore++;
+    } else if (choices === "scissorsrock" || choices === "rockpaper" || choices === "paperscissors") {
+        result = `You win! ${humanChoice} beats ${computerChoice}.`;
+        humanScore++;
+    } else {
+        result = `It's a tie.`;
+    }
+    return result;
+}
+
+humanSelection = getHumanChoice();
+computerSelection = getComputerChoice();
+
+console.log(computerSelection)
+console.log(humanSelection)
+
+console.log(playRound(computerSelection, humanSelection));
+console.log(computerScore)
+console.log(humanScore)
